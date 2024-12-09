@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit Converter</title>
+<style>
+body { font-family: Arial, sans-serif; margin: 20px; }
+select, input, button { margin: 10px 0; }
+</style>
+</head>
+<body>
+<h1>Welcome to the Rape Converter!</h1>
+<p>1 Rape = 20 centimeters, or equivalent in other units.</p>
+
+<label for="choice">Choose an option:</label>
+<select id="choice">
+<option value="1">Convert Centimeters to Rapes</option>
+<option value="2">Convert Inches to Rapes</option>
+<option value="3">Convert Feet to Rapes</option>
+<option value="4">Convert Meters to Rapes</option>
+<option value="5">Convert Rapes to Centimeters</option>
+<option value="6">Convert Rapes to Inches</option>
+<option value="7">Convert Rapes to Feet</option>
+<option value="8">Convert Rapes to Meters</option>
+</select>
+
+<div id="inputDiv">
+<label for="inputValue">Enter the value:</label>
+<input type="number" id="inputValue" step="any" />
+<button onclick="performConversion()">Convert</button>
+</div>
+
+<p id="result"></p>
+
+<script>
+const CENTIMETERS_PER_RAPE = 20.0;
+const INCHES_PER_RAPE = CENTIMETERS_PER_RAPE / 2.54;
+const FEET_PER_RAPE = INCHES_PER_RAPE / 12.0;
+const METERS_PER_RAPE = CENTIMETERS_PER_RAPE / 100.0;
+
+function performConversion() {
+const choice = document.getElementById("choice").value;
+const inputValue = parseFloat(document.getElementById("inputValue").value);
+let result = "";
+
+if (isNaN(inputValue)) {
+result = "Please enter a valid number.";
+} else {
+switch (choice) {
+case "1":
+result = `${inputValue} Centimeters is ${(inputValue / CENTIMETERS_PER_RAPE).toFixed(2)} Rapes.`;
+break;
+case "2":
+result = `${inputValue} Inches is ${(inputValue / INCHES_PER_RAPE).toFixed(2)} Rapes.`;
+break;
+case "3":
+result = `${inputValue} Feet is ${(inputValue / FEET_PER_RAPE).toFixed(2)} Rapes.`;
+break;
+case "4":
+result = `${inputValue} Meters is ${(inputValue / METERS_PER_RAPE).toFixed(2)} Rapes.`;
+break;
+case "5":
+result = `${inputValue} Rapes is ${(inputValue * CENTIMETERS_PER_RAPE).toFixed(2)} Centimeters.`;
+break;
+case "6":
+result = `${inputValue} Rapes is ${(inputValue * INCHES_PER_RAPE).toFixed(2)} Inches.`;
+break;
+case "7":
+result = `${inputValue} Rapes is ${(inputValue * FEET_PER_RAPE).toFixed(2)} Feet.`;
+break;
+case "8":
+result = `${inputValue} Rapes is ${(inputValue * METERS_PER_RAPE).toFixed(2)} Meters.`;
+break;
+default:
+result = "Invalid choice.";
+}
+}
+
+document.getElementById("result").textContent = result;
+}
+</script>
+</body>
+</html>
+
+
